@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.presentation.shopping_lists
+package com.evgtrush.foodbag.data.network
 
-import androidx.fragment.app.Fragment
-import com.evgtrush.foodbag.R
-
-class ShoppingListsFragment : Fragment(R.layout.fragment_shopping_lists) {
+object RecipeRetrofitConstants {
+    const val BASE_URL = "http://194.87.244.76/"
 }

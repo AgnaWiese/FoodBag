@@ -18,7 +18,13 @@ package com.evgtrush.foodbag.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.updatePadding
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.ActivityMainBinding
+import com.evgtrush.foodbag.presentation.utils.doOnApplyWindowInsets
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,8 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupInsets()
 
         navView = binding.navView
+
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navView.setupWithNavController(navController)
     }
 
     fun showBottomNav() {
@@ -47,5 +57,15 @@ class MainActivity : AppCompatActivity() {
 
     fun switchBottomNavigation(navigationId: Int) {
         navView.selectedItemId = navigationId
+    }
+
+    private fun setupInsets() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        binding.navView.doOnApplyWindowInsets { view, insets, padding ->
+            view.updatePadding(
+                bottom = padding.bottom + insets.systemWindowInsetBottom
+            )
+        }
     }
 }

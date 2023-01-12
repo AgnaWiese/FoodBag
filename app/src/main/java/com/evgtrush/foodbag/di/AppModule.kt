@@ -13,10 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.presentation.shopping_lists
+package com.evgtrush.foodbag.di
 
-import androidx.fragment.app.Fragment
-import com.evgtrush.foodbag.R
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Singleton
 
-class ShoppingListsFragment : Fragment(R.layout.fragment_shopping_lists) {
+@Module
+@InstallIn(SingletonComponent::class)
+class AppModule {
+
+    @Provides
+    @Singleton
+    fun provideIODispatcher() = Dispatchers.IO
+
+    @Provides
+    @Singleton
+    fun provideGson(): Gson = GsonBuilder()
+        .setLenient()
+        .create()
 }

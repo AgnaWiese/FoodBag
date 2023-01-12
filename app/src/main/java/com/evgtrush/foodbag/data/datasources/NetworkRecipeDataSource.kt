@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.presentation.shopping_lists
+package com.evgtrush.foodbag.data.datasources
 
-import androidx.fragment.app.Fragment
-import com.evgtrush.foodbag.R
+import com.evgtrush.foodbag.data.models.network.RecipeDto
 
-class ShoppingListsFragment : Fragment(R.layout.fragment_shopping_lists) {
+interface NetworkRecipeDataSource {
+
+    suspend fun getRecipes(): List<RecipeDto>
 }
