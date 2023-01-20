@@ -15,9 +15,9 @@
  */
 package com.evgtrush.foodbag.domain.repositories
 
-import com.evgtrush.foodbag.domain.models.Recipe
+import com.evgtrush.foodbag.domain.models.ShoppingList
 
-interface RecipeRepository {
+interface ShoppingListsRepository {
 
-    suspend fun getRecipes(): List<Recipe>
+    suspend fun getShoppingLists(): List<ShoppingList>
 }

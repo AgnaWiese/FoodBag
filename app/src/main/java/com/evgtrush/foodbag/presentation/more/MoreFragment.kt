@@ -63,13 +63,12 @@ class MoreFragment : Fragment() {
             data = Uri.parse(getString(R.string.url_project_github))
         })
 
-    private fun showAboutDialog() {
+    private fun showAboutDialog() =
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(resources.getString(R.string.about_foodbag))
-            .setMessage(resources.getString(R.string.about_foodbag_message))
-            .setPositiveButton(resources.getString(android.R.string.ok)) { dialog, _ ->
+            .setTitle(R.string.about_foodbag)
+            .setMessage(R.string.about_foodbag_message)
+            .setPositiveButton(android.R.string.ok) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
-    }
 }

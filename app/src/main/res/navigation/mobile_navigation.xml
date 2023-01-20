@@ -9,7 +9,11 @@
         android:id="@+id/navigation_shopping_lists"
         android:name="com.evgtrush.foodbag.presentation.shopping_lists.ShoppingListsFragment"
         android:label="@string/title_shopping_lists"
-        tools:layout="@layout/fragment_shopping_lists"/>
+        tools:layout="@layout/fragment_shopping_lists">
+        <action
+            android:id="@+id/action_open_shopping_list"
+            app:destination="@id/navigation_shopping_list_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_recipes"
@@ -26,6 +30,17 @@
         android:name="com.evgtrush.foodbag.presentation.more.MoreFragment"
         android:label="@string/title_more"
         tools:layout="@layout/fragment_more" />
+
+    <fragment
+        android:id="@+id/navigation_shopping_list_details"
+        android:name="com.evgtrush.foodbag.presentation.shopping_lists.details.ShoppingListDetailsFragment"
+        tools:layout="@layout/fragment_shopping_list_details">
+        <argument
+            android:name="shopping_list"
+            app:argType="com.evgtrush.foodbag.domain.models.ShoppingList"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_recipe_details"

@@ -32,7 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navView: BottomNavigationView
+    private var navView: BottomNavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +44,19 @@ class MainActivity : AppCompatActivity() {
         navView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        navView.setupWithNavController(navController)
+        navView?.setupWithNavController(navController)
     }
 
     fun showBottomNav() {
-        navView.visibility = View.VISIBLE
+        navView?.visibility = View.VISIBLE
     }
 
     fun hideBottomNav() {
-        navView.visibility = View.GONE
+        navView?.visibility = View.GONE
     }
 
     fun switchBottomNavigation(navigationId: Int) {
-        navView.selectedItemId = navigationId
+        navView?.selectedItemId = navigationId
     }
 
     private fun setupInsets() {

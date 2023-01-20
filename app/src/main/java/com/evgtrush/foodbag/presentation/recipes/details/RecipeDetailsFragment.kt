@@ -29,7 +29,7 @@ import com.evgtrush.foodbag.databinding.FragmentRecipeDetailsBinding
 import com.evgtrush.foodbag.domain.models.Recipe
 import com.evgtrush.foodbag.presentation.utils.hideBottomNav
 
-class RecipeDetailsFragment: Fragment() {
+class RecipeDetailsFragment : Fragment() {
 
     private val args: RecipeDetailsFragmentArgs by navArgs()
 
@@ -61,10 +61,14 @@ class RecipeDetailsFragment: Fragment() {
             Glide
                 .with(root.context)
                 .load(recipe?.imageUrl)
-                .placeholder(R.drawable.ic_outline_restaurant_24)
                 .into(image)
             description.text = recipe?.description
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun shareRecipe(recipe: Recipe?) {

@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.repositories
+package com.evgtrush.foodbag.domain.models
 
-import com.evgtrush.foodbag.domain.models.Recipe
-
-interface RecipeRepository {
-
-    suspend fun getRecipes(): List<Recipe>
-}
+data class ShoppingItem(
+    val name: String
+)

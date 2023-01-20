@@ -45,12 +45,11 @@ internal class RecipesAdapter(private val recipes: List<Recipe>) :
         fun bindView(recipe: Recipe) {
             with(binding) {
                 headline.text = recipe.name
-                subhead.text = recipe.type
+                rating.rating = recipe.rating.toFloat()
                 supportingText.text = recipe.description
                 Glide
                     .with(root.context)
-                    .load(recipe.previewImageUrl)
-                    .placeholder(R.drawable.ic_outline_restaurant_24)
+                    .load(recipe.imageUrl)
                     .into(contactAvatarImage)
                 materialCardContainer.setOnClickListener {
                     val direction = RecipesFragmentDirections.actionOpenRecipe(recipe)

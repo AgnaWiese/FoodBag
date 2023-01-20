@@ -19,28 +19,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Recipe(
-    val name: String = "",
-    val type: String = "",
-    val previewImageUrl: String = "",
-    val imageUrl: String = "",
-    val author: String = "",
-    val dateAdded: String = "",
-    val description: String = "",
-    val complexity: Int = 0,
-    val rating: Int = 0,
-    val steps: List<RecipeStep> = emptyList(),
-    val ingredients: List<RecipeIngredient> = emptyList(),
-) : Parcelable
-
-@Parcelize
-data class RecipeStep(
-    val imageUrl: String = "",
-    val text: String = "",
-) : Parcelable
-
-@Parcelize
-data class RecipeIngredient(
-    val name: String = "",
-    val qty: String = "",
+data class ShoppingList(
+    val id: Int,
+    val name: String,
+    val progress: Int,
 ) : Parcelable

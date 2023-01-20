@@ -15,8 +15,107 @@
  */
 package com.evgtrush.foodbag.presentation.shopping_lists
 
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.evgtrush.foodbag.R
+import com.evgtrush.foodbag.databinding.FragmentShoppingListsBinding
+import com.evgtrush.foodbag.presentation.shopping_lists.adapter.ShoppingListsAdapter
+import com.evgtrush.foodbag.presentation.utils.showBottomNav
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class ShoppingListsFragment : Fragment(R.layout.fragment_shopping_lists) {
+@AndroidEntryPoint
+class ShoppingListsFragment : Fragment() {
+
+    private val viewModel: ShoppingListsViewModel by viewModels()
+
+    private var _binding: FragmentShoppingListsBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentShoppingListsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        showBottomNav()
+
+        getShoppingListsAsync()
+
+        binding.fab.setOnClickListener {
+            showAddListDialog()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun getShoppingListsAsync() {
+        binding.progress.visibility = View.VISIBLE
+        viewModel.getShoppingLists()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collectLatest {
+                    Log.d("ShoppingListsFragment", "UI update: $it")
+
+                    binding.shoppingLists.adapter = ShoppingListsAdapter(
+                        it.shoppingLists,
+                        parentFragmentManager,
+                        viewModel
+                    )
+
+                    when {
+                        it.isError -> {
+                            showSnackBar(R.string.general_error)
+                        }
+                    }
+
+                    binding.progress.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun showSnackBar(@StringRes message: Int) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+        viewModel.userMessageShown()
+    }
+
+    private fun showAddListDialog() {
+        val view = layoutInflater.inflate(R.layout.view_edit_text, null, false)
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.title_create_list)
+            .setView(view)
+            .setPositiveButton(R.string.item_create) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+    }
 }

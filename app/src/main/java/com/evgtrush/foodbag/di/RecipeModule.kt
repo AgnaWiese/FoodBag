@@ -30,18 +30,20 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class RecipeModule {
 
     companion object {
         @Provides
-        @Singleton
+        @ViewModelScoped
         fun provideRetrofitRecipeService(gson: Gson): RecipeService = Retrofit.Builder()
             .baseUrl(RecipeRetrofitConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -50,18 +52,18 @@ abstract class RecipeModule {
     }
 
     @Binds
-    @Singleton
+    @ViewModelScoped
     abstract fun bindNetworkRecipeDataSource(impl: NetworkRecipeDataSourceImpl): NetworkRecipeDataSource
 
     @Binds
-    @Singleton
+    @ViewModelScoped
     abstract fun bindRecipeMapper(impl: RecipeMapperImpl): RecipeMapper
 
     @Binds
-    @Singleton
+    @ViewModelScoped
     abstract fun bindRecipeRepository(impl: RecipeRepositoryImpl): RecipeRepository
 
     @Binds
-    @Singleton
+    @ViewModelScoped
     abstract fun bindRecipeInteractor(impl: RecipeInteractorImpl): RecipeInteractor
 }

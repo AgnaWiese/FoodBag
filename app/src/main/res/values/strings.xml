@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FoodBag</string>
 
@@ -11,7 +12,17 @@
     <string name="about_foodbag_message">by Eugeniya Trushkina\n© 2023, all rights reserved\n\nVersion 1.0.0</string>
     <string name="view_source_code">View the source code</string>
 
+    <string name="title_create_list">Create list</string>
+    <string name="title_rename_list">Rename list</string>
+
+    <string name="item_create">Create</string>
+    <string name="item_rename">Rename</string>
+    <string name="item_delete">Delete</string>
+
+    <string name="add_item">Add item</string>
+
     <string name="share">Share</string>
 
     <string name="url_project_github" translatable="false">https://github.com/AgnaWiese/FoodBag</string>
+    <string name="edit_list">Edit list</string>
 </resources>

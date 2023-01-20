@@ -13,11 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.repositories
+package com.evgtrush.foodbag.di
 
-import com.evgtrush.foodbag.domain.models.Recipe
+import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
+import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractorImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
-interface RecipeRepository {
+@Module
+@InstallIn(ViewModelComponent::class)
+abstract class ShoppingListsModule {
 
-    suspend fun getRecipes(): List<Recipe>
+    @Binds
+    @ViewModelScoped
+    abstract fun bindRecipeInteractor(impl: ShoppingListInteractorImpl): ShoppingListInteractor
 }

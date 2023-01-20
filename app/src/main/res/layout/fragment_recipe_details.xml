@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".presentation.lake.ContactDetailsFragment">
+    tools:context=".presentation.recipes.details.RecipeDetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,8 +23,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                android:elevation="0dp">
+                app:layout_collapseMode="pin">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnShare"
@@ -61,6 +60,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/white"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.App.LargeCorners"
                 android:scaleType="centerCrop"
                 app:backgroundTint="?attr/colorSurfaceVariant"
                 app:strokeColor="?attr/colorSurfaceVariant"
