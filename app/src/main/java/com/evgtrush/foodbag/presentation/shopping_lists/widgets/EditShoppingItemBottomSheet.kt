@@ -23,14 +23,14 @@ import android.view.WindowManager
 import android.widget.EditText
 import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.BottomSheetEditShoppingListBinding
-import com.evgtrush.foodbag.domain.models.ShoppingList
-import com.evgtrush.foodbag.presentation.shopping_lists.ShoppingListsViewModel
+import com.evgtrush.foodbag.domain.models.ShoppingItem
+import com.evgtrush.foodbag.presentation.shopping_lists.details.ShoppingListDetailsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class EditShoppingListBottomSheet(
-    private val shoppingList: ShoppingList,
-    private val viewModel: ShoppingListsViewModel
+class EditShoppingItemBottomSheet(
+    private val shoppingItem: ShoppingItem,
+    private val viewModel: ShoppingListDetailsViewModel
 ) : BottomSheetDialogFragment() {
 
     companion object {
@@ -59,7 +59,7 @@ class EditShoppingListBottomSheet(
                 dismiss()
             }
             itemDelete.setOnClickListener {
-                viewModel.removeShoppingList(shoppingList.id)
+                viewModel.removeShoppingItem(shoppingItem.id)
                 dismiss()
             }
         }
@@ -68,12 +68,12 @@ class EditShoppingListBottomSheet(
     private fun showRenameDialog() {
         val view = layoutInflater.inflate(R.layout.view_edit_text, null, false)
         view.findViewById<EditText>(R.id.textField).apply {
-            setText(shoppingList.name)
+            setText(shoppingItem.name)
             setSelection(length())
         }
 
         val dialog = MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.title_rename_list)
+            .setTitle(R.string.title_rename_item)
             .setView(view)
             .setPositiveButton(R.string.item_rename) { dialog, _ ->
                 dialog.dismiss()

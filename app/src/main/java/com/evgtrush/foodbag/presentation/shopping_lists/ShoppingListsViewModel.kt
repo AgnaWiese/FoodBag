@@ -56,6 +56,26 @@ class ShoppingListsViewModel @Inject constructor(
         }
     }
 
+    fun createShoppingList(shoppingList: ShoppingList) {
+        viewModelScope.launch {
+            try {
+                interactor.createShoppingList(shoppingList)
+                _uiState.update {
+                    it.copy(
+                        navigateToDetails = true
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
+                _uiState.update {
+                    it.copy(
+                        isError = true
+                    )
+                }
+            }
+        }
+    }
+
     fun removeShoppingList(id: Int) {
         viewModelScope.launch {
             try {
@@ -81,6 +101,7 @@ class ShoppingListsViewModel @Inject constructor(
 
     data class ShoppingListsUiState(
         val isError: Boolean = false,
+        val navigateToDetails: Boolean = false,
         val shoppingLists: List<ShoppingList> = emptyList()
     )
 }

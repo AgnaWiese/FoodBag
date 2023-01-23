@@ -16,5 +16,7 @@
 package com.evgtrush.foodbag.domain.models
 
 data class ShoppingItem(
-    val name: String
+    val id: Int,
+    val name: String,
+    val bought: Boolean = false,
 )

@@ -30,6 +30,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.FragmentShoppingListDetailsBinding
+import com.evgtrush.foodbag.presentation.shopping_lists.adapter.ShoppingListItemsAdapter
 import com.evgtrush.foodbag.presentation.utils.hideBottomNav
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -86,7 +87,9 @@ class ShoppingListDetailsFragment : Fragment(R.layout.fragment_shopping_list_det
                     viewModel.uiState.collectLatest {
                         Log.d("ShoppingListDetailsFragment", "UI update: $it")
 
-                        //binding.shoppingItems.adapter = ShoppingListsAdapter()
+                        binding.shoppingItems.adapter = ShoppingListItemsAdapter(
+                            it.shoppingItems, parentFragmentManager, viewModel
+                        )
 
                         when {
                             it.isError -> {

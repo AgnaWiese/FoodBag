@@ -24,13 +24,18 @@ interface ShoppingListInteractor {
 
     suspend fun createShoppingList(shoppingList: ShoppingList)
 
+    suspend fun editShoppingList(shoppingList: ShoppingList)
+
     suspend fun removeShoppingList(id: Int)
 
     suspend fun getShoppingItems(shoppingListId: Int): List<ShoppingItem>
 
     suspend fun addShoppingItem(shoppingItem: ShoppingItem)
 
+    suspend fun editShoppingItem(shoppingItem: ShoppingItem)
+
     suspend fun removeShoppingItem(id: Int)
 
     suspend fun setShoppingItemStatus(isBought: Boolean)
+
 }

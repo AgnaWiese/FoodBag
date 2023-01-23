@@ -21,14 +21,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.EditText
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.Navigation
 import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.FragmentShoppingListsBinding
+import com.evgtrush.foodbag.domain.models.ShoppingList
 import com.evgtrush.foodbag.presentation.shopping_lists.adapter.ShoppingListsAdapter
 import com.evgtrush.foodbag.presentation.utils.showBottomNav
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -86,6 +89,10 @@ class ShoppingListsFragment : Fragment() {
                     )
 
                     when {
+                        it.navigateToDetails -> {
+//                            val direction = ShoppingListsFragmentDirections.actionOpenShoppingList(shoppingList)
+//                            Navigation.findNavController(binding.root§).navigate(direction)
+                        }
                         it.isError -> {
                             showSnackBar(R.string.general_error)
                         }
@@ -109,6 +116,11 @@ class ShoppingListsFragment : Fragment() {
             .setTitle(R.string.title_create_list)
             .setView(view)
             .setPositiveButton(R.string.item_create) { dialog, _ ->
+                viewModel.createShoppingList(
+                    ShoppingList(
+                        name = view.findViewById<EditText>(R.id.textField).text.toString()
+                    )
+                )
                 dialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->

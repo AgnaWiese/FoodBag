@@ -31,16 +31,23 @@ class ShoppingListInteractorImpl @Inject constructor() : ShoppingListInteractor 
     override suspend fun createShoppingList(shoppingList: ShoppingList) {
     }
 
+    override suspend fun editShoppingList(shoppingList: ShoppingList) {
+    }
+
     override suspend fun removeShoppingList(id: Int) {
     }
 
     override suspend fun getShoppingItems(shoppingListId: Int): List<ShoppingItem> = listOf(
-        ShoppingItem("Картофель"),
-        ShoppingItem("Яйца"),
-        ShoppingItem("Лук"),
+        ShoppingItem(0, "Картофель", true),
+        ShoppingItem(1, "Яйца"),
+        ShoppingItem(2,"Лук"),
+        ShoppingItem(3,"Молоко"),
     )
 
     override suspend fun addShoppingItem(shoppingItem: ShoppingItem) {
+    }
+
+    override suspend fun editShoppingItem(shoppingItem: ShoppingItem) {
     }
 
     override suspend fun removeShoppingItem(id: Int) {
@@ -48,4 +55,6 @@ class ShoppingListInteractorImpl @Inject constructor() : ShoppingListInteractor 
 
     override suspend fun setShoppingItemStatus(isBought: Boolean) {
     }
+
+
 }

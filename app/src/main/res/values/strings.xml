@@ -14,6 +14,8 @@
 
     <string name="title_create_list">Create list</string>
     <string name="title_rename_list">Rename list</string>
+    <string name="title_add_item">Rename item</string>
+    <string name="title_rename_item">Rename item</string>
 
     <string name="item_create">Create</string>
     <string name="item_rename">Rename</string>
@@ -23,6 +25,8 @@
 
     <string name="share">Share</string>
 
-    <string name="url_project_github" translatable="false">https://github.com/AgnaWiese/FoodBag</string>
     <string name="edit_list">Edit list</string>
+    <string name="edit_item">Edit item</string>
+
+    <string name="url_project_github" translatable="false">https://github.com/AgnaWiese/FoodBag</string>
 </resources>
