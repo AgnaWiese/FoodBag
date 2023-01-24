@@ -15,6 +15,7 @@
  */
 package com.evgtrush.foodbag.domain.interactors
 
+import com.evgtrush.foodbag.domain.models.RecipeIngredient
 import com.evgtrush.foodbag.domain.models.ShoppingItem
 import com.evgtrush.foodbag.domain.models.ShoppingList
 
@@ -23,6 +24,8 @@ interface ShoppingListInteractor {
     suspend fun getShoppingLists(): List<ShoppingList>
 
     suspend fun createShoppingList(shoppingList: ShoppingList)
+
+    suspend fun createShoppingListByIngredients(ingredients: List<RecipeIngredient>)
 
     suspend fun editShoppingList(shoppingList: ShoppingList)
 
@@ -37,5 +40,4 @@ interface ShoppingListInteractor {
     suspend fun removeShoppingItem(id: Int)
 
     suspend fun setShoppingItemStatus(isBought: Boolean)
-
 }

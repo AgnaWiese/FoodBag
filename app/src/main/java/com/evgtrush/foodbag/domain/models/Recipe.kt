@@ -29,18 +29,18 @@ data class Recipe(
     val description: String = "",
     val complexity: Int = 0,
     val rating: Int = 0,
-    val steps: List<RecipeStep> = emptyList(),
     val ingredients: List<RecipeIngredient> = emptyList(),
-) : Parcelable
-
-@Parcelize
-data class RecipeStep(
-    val imageUrl: String = "",
-    val text: String = "",
+    val steps: List<RecipeStep> = emptyList(),
 ) : Parcelable
 
 @Parcelize
 data class RecipeIngredient(
     val name: String = "",
     val qty: String = "",
+) : Parcelable
+
+@Parcelize
+data class RecipeStep(
+    val imageUrl: String = "",
+    val text: String = "",
 ) : Parcelable

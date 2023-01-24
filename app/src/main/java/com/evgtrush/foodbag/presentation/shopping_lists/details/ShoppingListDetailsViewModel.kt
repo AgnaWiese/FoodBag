@@ -56,6 +56,21 @@ class ShoppingListDetailsViewModel @Inject constructor(
         }
     }
 
+    fun addShoppingItem(shoppingLItem: ShoppingItem) {
+        viewModelScope.launch {
+            try {
+                interactor.addShoppingItem(shoppingLItem)
+            } catch (e: Exception) {
+                Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
+                _uiState.update {
+                    it.copy(
+                        isError = true
+                    )
+                }
+            }
+        }
+    }
+
     fun removeShoppingItem(id: Int) {
         viewModelScope.launch {
             try {

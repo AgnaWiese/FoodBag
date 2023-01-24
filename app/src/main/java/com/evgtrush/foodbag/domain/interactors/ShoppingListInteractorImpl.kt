@@ -15,6 +15,7 @@
  */
 package com.evgtrush.foodbag.domain.interactors
 
+import com.evgtrush.foodbag.domain.models.RecipeIngredient
 import com.evgtrush.foodbag.domain.models.ShoppingItem
 import com.evgtrush.foodbag.domain.models.ShoppingList
 import javax.inject.Inject
@@ -29,6 +30,9 @@ class ShoppingListInteractorImpl @Inject constructor() : ShoppingListInteractor 
     )
 
     override suspend fun createShoppingList(shoppingList: ShoppingList) {
+    }
+
+    override suspend fun createShoppingListByIngredients(ingredients: List<RecipeIngredient>) {
     }
 
     override suspend fun editShoppingList(shoppingList: ShoppingList) {
@@ -55,6 +59,4 @@ class ShoppingListInteractorImpl @Inject constructor() : ShoppingListInteractor 
 
     override suspend fun setShoppingItemStatus(isBought: Boolean) {
     }
-
-
 }

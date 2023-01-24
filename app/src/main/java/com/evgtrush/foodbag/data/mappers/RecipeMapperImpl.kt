@@ -17,6 +17,8 @@ package com.evgtrush.foodbag.data.mappers
 
 import com.evgtrush.foodbag.data.models.network.RecipeDto
 import com.evgtrush.foodbag.domain.models.Recipe
+import com.evgtrush.foodbag.domain.models.RecipeIngredient
+import com.evgtrush.foodbag.domain.models.RecipeStep
 import javax.inject.Inject
 
 class RecipeMapperImpl @Inject constructor(): RecipeMapper {
@@ -31,6 +33,18 @@ class RecipeMapperImpl @Inject constructor(): RecipeMapper {
             dateAdded = dto.dateAdded,
             description = dto.description,
             complexity = dto.complexity,
-            rating = dto.rating
+            rating = dto.rating,
+            ingredients = dto.ingredients.map {
+                RecipeIngredient(
+                    name = it.name,
+                    qty = it.qty
+                )
+            },
+            steps = dto.steps.map {
+                RecipeStep(
+                    imageUrl = it.image,
+                    text = it.text
+                )
+            }
         )
 }

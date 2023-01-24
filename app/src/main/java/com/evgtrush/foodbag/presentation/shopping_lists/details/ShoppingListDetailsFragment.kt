@@ -20,6 +20,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.EditText
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -30,8 +32,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.FragmentShoppingListDetailsBinding
+import com.evgtrush.foodbag.domain.models.ShoppingItem
 import com.evgtrush.foodbag.presentation.shopping_lists.adapter.ShoppingListItemsAdapter
 import com.evgtrush.foodbag.presentation.utils.hideBottomNav
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -70,6 +74,10 @@ class ShoppingListDetailsFragment : Fragment(R.layout.fragment_shopping_list_det
             }
         }
 
+        binding.fab.setOnClickListener {
+            showAddItemDialog()
+        }
+
         getShoppingItemsAsync()
     }
 
@@ -92,9 +100,7 @@ class ShoppingListDetailsFragment : Fragment(R.layout.fragment_shopping_list_det
                         )
 
                         when {
-                            it.isError -> {
-                                showSnackBar(R.string.general_error)
-                            }
+                            it.isError -> showSnackBar(R.string.general_error)
                         }
 
                         binding.progress.visibility = View.GONE
@@ -107,5 +113,27 @@ class ShoppingListDetailsFragment : Fragment(R.layout.fragment_shopping_list_det
     private fun showSnackBar(@StringRes message: Int) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
         viewModel.userMessageShown()
+    }
+
+    private fun showAddItemDialog() {
+        val view = layoutInflater.inflate(R.layout.view_edit_text, null, false)
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.title_add_item)
+            .setView(view)
+            .setPositiveButton(R.string.item_create) { dialog, _ ->
+                viewModel.addShoppingItem(
+                    ShoppingItem(
+                        name = view.findViewById<EditText>(R.id.textField).text.toString()
+                    )
+                )
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
 }

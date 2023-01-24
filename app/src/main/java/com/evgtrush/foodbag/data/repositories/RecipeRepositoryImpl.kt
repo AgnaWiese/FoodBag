@@ -15,7 +15,7 @@
  */
 package com.evgtrush.foodbag.data.repositories
 
-import com.evgtrush.foodbag.data.datasources.NetworkRecipeDataSourceImpl
+import com.evgtrush.foodbag.data.datasources.NetworkRecipeDataSource
 import com.evgtrush.foodbag.data.mappers.RecipeMapper
 import com.evgtrush.foodbag.domain.models.Recipe
 import com.evgtrush.foodbag.domain.repositories.RecipeRepository
@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
-    private val dataSource: NetworkRecipeDataSourceImpl,
+    private val dataSource: NetworkRecipeDataSource,
     private val mapper: RecipeMapper,
     private val dispatcher: CoroutineDispatcher
 ): RecipeRepository {

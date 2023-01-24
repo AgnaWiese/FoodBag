@@ -60,11 +60,6 @@ class ShoppingListsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 interactor.createShoppingList(shoppingList)
-                _uiState.update {
-                    it.copy(
-                        navigateToDetails = true
-                    )
-                }
             } catch (e: Exception) {
                 Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
                 _uiState.update {
@@ -101,7 +96,6 @@ class ShoppingListsViewModel @Inject constructor(
 
     data class ShoppingListsUiState(
         val isError: Boolean = false,
-        val navigateToDetails: Boolean = false,
         val shoppingLists: List<ShoppingList> = emptyList()
     )
 }

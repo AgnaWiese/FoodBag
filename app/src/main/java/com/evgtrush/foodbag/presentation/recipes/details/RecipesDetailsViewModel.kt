@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.presentation.recipes
+package com.evgtrush.foodbag.presentation.recipes.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.evgtrush.foodbag.domain.interactors.RecipeInteractor
-import com.evgtrush.foodbag.domain.models.Recipe
+import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
+import com.evgtrush.foodbag.domain.models.RecipeIngredient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,20 +28,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipesViewModel @Inject constructor(
-    private val interactor: RecipeInteractor
+class RecipesDetailsViewModel @Inject constructor(
+    private val interactor: ShoppingListInteractor
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(RecipesUiState())
-    val uiState: StateFlow<RecipesUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(RecipesDetailsUiState())
+    val uiState: StateFlow<RecipesDetailsUiState> = _uiState.asStateFlow()
 
-    fun getRecipes() {
+    fun createShoppingListByIngredients(ingredients: List<RecipeIngredient>) {
         viewModelScope.launch {
             try {
-                val recipes = interactor.getRecipes()
+                interactor.createShoppingListByIngredients(ingredients)
                 _uiState.update {
                     it.copy(
-                        recipes = recipes
+                        showCreateShoppingListMessageOK = true
                     )
                 }
             } catch (e: Exception) {
@@ -57,13 +57,14 @@ class RecipesViewModel @Inject constructor(
     fun userMessageShown() {
         _uiState.update {
             it.copy(
+                showCreateShoppingListMessageOK = false,
                 isError = false
             )
         }
     }
 
-    data class RecipesUiState(
-        val isError: Boolean = false,
-        val recipes: List<Recipe> = emptyList()
+    data class RecipesDetailsUiState(
+        val showCreateShoppingListMessageOK: Boolean = false,
+        val isError: Boolean = false
     )
 }

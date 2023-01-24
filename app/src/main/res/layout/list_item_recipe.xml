@@ -21,10 +21,9 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/contact_avatar_image"
+                    android:id="@+id/recipe_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_alignParentEnd="true"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="?attr/shapeAppearanceMediumComponent"
                     app:backgroundTint="?attr/colorSurfaceVariant"/>
@@ -54,7 +53,6 @@
                     android:layout_marginHorizontal="16dp"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:textColor="?android:attr/textColorSecondary"
                     android:textAppearance="?attr/textAppearanceBodyMedium"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

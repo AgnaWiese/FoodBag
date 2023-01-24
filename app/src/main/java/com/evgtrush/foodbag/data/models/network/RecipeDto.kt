@@ -24,5 +24,17 @@ data class RecipeDto(
     val dateAdded: String = "",
     val description: String = "",
     val complexity: Int = 0,
-    val rating: Int = 0
+    val rating: Int = 0,
+    val ingredients: List<RecipeIngredientDto> = emptyList(),
+    val steps: List<RecipeStepDto> = emptyList(),
+)
+
+data class RecipeIngredientDto(
+    val name: String = "",
+    val qty: String = "",
+)
+
+data class RecipeStepDto(
+    val image: String = "",
+    val text: String = "",
 )

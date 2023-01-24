@@ -76,9 +76,7 @@ class RecipesFragment : Fragment() {
                     binding.recipesList.adapter = RecipesAdapter(it.recipes)
 
                     when {
-                        it.isError -> {
-                            showSnackBar(R.string.general_error)
-                        }
+                        it.isError -> showSnackBar(R.string.general_error)
                     }
 
                     binding.progress.visibility = View.GONE

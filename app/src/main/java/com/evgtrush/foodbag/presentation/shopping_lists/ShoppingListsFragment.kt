@@ -89,13 +89,7 @@ class ShoppingListsFragment : Fragment() {
                     )
 
                     when {
-                        it.navigateToDetails -> {
-//                            val direction = ShoppingListsFragmentDirections.actionOpenShoppingList(shoppingList)
-//                            Navigation.findNavController(binding.root§).navigate(direction)
-                        }
-                        it.isError -> {
-                            showSnackBar(R.string.general_error)
-                        }
+                        it.isError -> showSnackBar(R.string.general_error)
                     }
 
                     binding.progress.visibility = View.GONE

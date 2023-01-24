@@ -31,7 +31,7 @@ internal class RecipesAdapter(private val recipes: List<Recipe>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder =
         RecipeViewHolder(
             ListItemRecipeBinding.inflate(
-                LayoutInflater.from(parent.context)
+                LayoutInflater.from(parent.context), parent, false
             )
         )
 
@@ -50,7 +50,7 @@ internal class RecipesAdapter(private val recipes: List<Recipe>) :
                 Glide
                     .with(root.context)
                     .load(recipe.imageUrl)
-                    .into(contactAvatarImage)
+                    .into(recipeImage)
                 materialCardContainer.setOnClickListener {
                     val direction = RecipesFragmentDirections.actionOpenRecipe(recipe)
                     Navigation.findNavController(it).navigate(direction)

@@ -7,6 +7,7 @@
     <string name="title_more">More</string>
 
     <string name="general_error">Something went wrong…</string>
+    <string name="added_to_shopping_list">Added to shopping lists</string>
 
     <string name="about_foodbag">About FoodBag</string>
     <string name="about_foodbag_message">by Eugeniya Trushkina\n© 2023, all rights reserved\n\nVersion 1.0.0</string>
@@ -14,9 +15,10 @@
 
     <string name="title_create_list">Create list</string>
     <string name="title_rename_list">Rename list</string>
-    <string name="title_add_item">Rename item</string>
+    <string name="title_add_item">Add item</string>
     <string name="title_rename_item">Rename item</string>
 
+    <string name="item_add">Add</string>
     <string name="item_create">Create</string>
     <string name="item_rename">Rename</string>
     <string name="item_delete">Delete</string>
@@ -29,4 +31,8 @@
     <string name="edit_item">Edit item</string>
 
     <string name="url_project_github" translatable="false">https://github.com/AgnaWiese/FoodBag</string>
+    <string name="title_about_recipe">About recipe</string>
+    <string name="title_ingredients">Ingredients</string>
+    <string name="add_to_shopping_list">Add to shopping list</string>
+    <string name="сooking_steps">Сooking steps</string>
 </resources>
