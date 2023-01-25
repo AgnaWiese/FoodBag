@@ -28,7 +28,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigation
 import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.FragmentShoppingListsBinding
 import com.evgtrush.foodbag.domain.models.ShoppingList

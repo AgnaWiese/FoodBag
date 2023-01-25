@@ -104,6 +104,12 @@ class ShoppingListDetailsFragment : Fragment(R.layout.fragment_shopping_list_det
                         }
 
                         binding.progress.visibility = View.GONE
+
+                        binding.hint.visibility = if (it.shoppingItems.isEmpty()) {
+                            View.VISIBLE
+                        } else {
+                            View.GONE
+                        }
                     }
                 }
             }

@@ -37,7 +37,11 @@ class ShoppingListRepositoryImpl @Inject constructor(
 
     override suspend fun getShoppingLists(): List<ShoppingList> = withContext(dispatcher) {
         shoppingListDao.getAll().map {
-            shoppingListMapper.convert(it)
+            shoppingListMapper.convert(it).apply {
+                //TODO: refactor
+                progress = (shoppingItemDao.getItemsCountByShoppingListId(it.uid, true) /
+                        shoppingItemDao.getItemsCountByShoppingListId(it.uid, false).toFloat() * 100).toInt()
+            }
         }
     }
 

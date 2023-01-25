@@ -48,6 +48,14 @@
             android:indeterminate="true"
             android:visibility="gone"/>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/hint"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_shoppings_items_hint"
+            android:visibility="gone"/>
+
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

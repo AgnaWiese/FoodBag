@@ -37,4 +37,5 @@
     <string name="сooking_steps">Сooking steps</string>
 
     <string name="empty_shoppings_lists_hint">Add your first shopping list :)</string>
+    <string name="empty_shoppings_items_hint">Add your first shopping item :)</string>
 </resources>
