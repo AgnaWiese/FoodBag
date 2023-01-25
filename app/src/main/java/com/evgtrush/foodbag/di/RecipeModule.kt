@@ -15,8 +15,8 @@
  */
 package com.evgtrush.foodbag.di
 
-import com.evgtrush.foodbag.data.datasources.NetworkRecipeDataSource
-import com.evgtrush.foodbag.data.datasources.NetworkRecipeDataSourceImpl
+import com.evgtrush.foodbag.data.datasources.network.NetworkRecipeDataSource
+import com.evgtrush.foodbag.data.datasources.network.NetworkRecipeDataSourceImpl
 import com.evgtrush.foodbag.data.mappers.RecipeMapper
 import com.evgtrush.foodbag.data.mappers.RecipeMapperImpl
 import com.evgtrush.foodbag.data.network.RecipeRetrofitConstants
@@ -32,10 +32,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ViewModelComponent::class)

@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.data.datasources
+package com.evgtrush.foodbag.data.mappers
 
-import com.evgtrush.foodbag.data.models.network.RecipeDto
+import com.evgtrush.foodbag.data.models.db.ShoppingListEntity
+import com.evgtrush.foodbag.domain.models.ShoppingList
 
-interface NetworkRecipeDataSource {
+interface ShoppingListMapper {
 
-    suspend fun getRecipes(): List<RecipeDto>
+    fun convert(entity: ShoppingListEntity): ShoppingList
+    fun reverse(model: ShoppingList): ShoppingListEntity
 }

@@ -137,7 +137,7 @@ class RecipeDetailsFragment : Fragment() {
 
     private fun addToShoppingList(recipe: Recipe) {
         if (recipe.ingredients.isNotEmpty()) {
-            viewModel.createShoppingListByIngredients(recipe.ingredients)
+            viewModel.createShoppingListByIngredients(recipe.name, recipe.ingredients)
         }
     }
 

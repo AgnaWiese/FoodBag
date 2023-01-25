@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.interactors
+package com.evgtrush.foodbag.domain.repositories
 
 import com.evgtrush.foodbag.domain.models.RecipeIngredient
 import com.evgtrush.foodbag.domain.models.ShoppingItem
 import com.evgtrush.foodbag.domain.models.ShoppingList
 
-interface ShoppingListInteractor {
+interface ShoppingListRepository {
 
     suspend fun getShoppingLists(): List<ShoppingList>
 
     suspend fun createShoppingList(shoppingList: ShoppingList)
 
-    suspend fun createShoppingListByIngredients(shoppingList: ShoppingList,
-                                                ingredients: List<RecipeIngredient>)
+    suspend fun createShoppingListByIngredients(shoppingList: ShoppingList, ingredients: List<RecipeIngredient>)
 
     suspend fun editShoppingList(shoppingList: ShoppingList)
 

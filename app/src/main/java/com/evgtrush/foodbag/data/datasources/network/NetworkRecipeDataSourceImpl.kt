@@ -13,11 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.repositories
+package com.evgtrush.foodbag.data.datasources.network
 
-import com.evgtrush.foodbag.domain.models.ShoppingList
+import com.evgtrush.foodbag.data.models.network.RecipeDto
+import com.evgtrush.foodbag.data.network.RecipeService
+import javax.inject.Inject
 
-interface ShoppingListsRepository {
+class NetworkRecipeDataSourceImpl @Inject constructor(
+    private val recipeService: RecipeService,
+): NetworkRecipeDataSource {
 
-    suspend fun getShoppingLists(): List<ShoppingList>
+    override suspend fun getRecipes(): List<RecipeDto> = recipeService.getRecipes()
 }

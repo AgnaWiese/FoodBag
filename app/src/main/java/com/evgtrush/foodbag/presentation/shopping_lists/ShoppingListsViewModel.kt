@@ -71,10 +71,10 @@ class ShoppingListsViewModel @Inject constructor(
         }
     }
 
-    fun removeShoppingList(id: Int) {
+    fun removeShoppingList(shoppingList: ShoppingList) {
         viewModelScope.launch {
             try {
-                interactor.removeShoppingList(id)
+                interactor.removeShoppingList(shoppingList)
             } catch (e: Exception) {
                 Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
                 _uiState.update {

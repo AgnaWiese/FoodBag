@@ -13,11 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.models
+package com.evgtrush.foodbag.data.datasources.db
 
-data class ShoppingItem(
-    val id: Int = 0,
-    val name: String,
-    val bought: Boolean = false,
-    val shoppingListId: Int = 0,
-)
+import androidx.room.*
+import com.evgtrush.foodbag.data.datasources.db.AppDatabase.Companion.TABLE_SHOPPING_LISTS
+import com.evgtrush.foodbag.data.models.db.ShoppingListEntity
+
+@Dao
+interface ShoppingListDao {
+
+    @Query("SELECT * FROM $TABLE_SHOPPING_LISTS")
+    suspend fun getAll(): List<ShoppingListEntity>
+
+    @Insert
+    suspend fun insertAll(vararg shoppingLists: ShoppingListEntity)
+
+    @Update
+    suspend fun update(shoppingList: ShoppingListEntity)
+
+    @Delete
+    suspend fun delete(shoppingList: ShoppingListEntity)
+}

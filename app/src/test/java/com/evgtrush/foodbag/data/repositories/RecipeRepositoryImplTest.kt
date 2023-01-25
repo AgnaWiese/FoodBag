@@ -15,7 +15,7 @@
  */
 package com.evgtrush.foodbag.data.repositories
 
-import com.evgtrush.foodbag.data.datasources.NetworkRecipeDataSource
+import com.evgtrush.foodbag.data.datasources.network.NetworkRecipeDataSource
 import com.evgtrush.foodbag.data.mappers.RecipeMapperImpl
 import com.evgtrush.foodbag.data.models.network.RecipeDto
 import com.evgtrush.foodbag.domain.models.Recipe

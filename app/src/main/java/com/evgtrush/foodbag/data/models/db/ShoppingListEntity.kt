@@ -13,11 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.models
+package com.evgtrush.foodbag.data.models.db
 
-data class ShoppingItem(
-    val id: Int = 0,
-    val name: String,
-    val bought: Boolean = false,
-    val shoppingListId: Int = 0,
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.evgtrush.foodbag.data.datasources.db.AppDatabase.Companion.TABLE_SHOPPING_LISTS
+
+@Entity(tableName = TABLE_SHOPPING_LISTS)
+data class ShoppingListEntity(
+    @PrimaryKey(autoGenerate = true) val uid: Int,
+    @ColumnInfo(name = "name") val name: String,
 )

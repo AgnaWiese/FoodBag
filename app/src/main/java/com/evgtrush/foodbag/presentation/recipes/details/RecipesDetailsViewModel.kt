@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
 import com.evgtrush.foodbag.domain.models.RecipeIngredient
+import com.evgtrush.foodbag.domain.models.ShoppingList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,10 +36,15 @@ class RecipesDetailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RecipesDetailsUiState())
     val uiState: StateFlow<RecipesDetailsUiState> = _uiState.asStateFlow()
 
-    fun createShoppingListByIngredients(ingredients: List<RecipeIngredient>) {
+    fun createShoppingListByIngredients(shoppingListName: String, ingredients: List<RecipeIngredient>) {
         viewModelScope.launch {
             try {
-                interactor.createShoppingListByIngredients(ingredients)
+                interactor.createShoppingListByIngredients(
+                    shoppingList = ShoppingList(
+                        name = shoppingListName
+                    ),
+                    ingredients = ingredients
+                )
                 _uiState.update {
                     it.copy(
                         showCreateShoppingListMessageOK = true

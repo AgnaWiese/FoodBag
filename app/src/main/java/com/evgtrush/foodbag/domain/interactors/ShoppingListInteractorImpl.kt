@@ -18,45 +18,38 @@ package com.evgtrush.foodbag.domain.interactors
 import com.evgtrush.foodbag.domain.models.RecipeIngredient
 import com.evgtrush.foodbag.domain.models.ShoppingItem
 import com.evgtrush.foodbag.domain.models.ShoppingList
+import com.evgtrush.foodbag.domain.repositories.ShoppingListRepository
 import javax.inject.Inject
 
-class ShoppingListInteractorImpl @Inject constructor() : ShoppingListInteractor {
+class ShoppingListInteractorImpl @Inject constructor(
+    private val shoppingListRepository: ShoppingListRepository
+) : ShoppingListInteractor {
 
-    override suspend fun getShoppingLists(): List<ShoppingList> = listOf(
-        ShoppingList(1, "Булочная", 0),
-        ShoppingList(1, "Продукты", 25),
-        ShoppingList(2, "Аптека", 75),
-        ShoppingList(3, "Рататуй", 100),
-    )
+    override suspend fun getShoppingLists(): List<ShoppingList> =
+        shoppingListRepository.getShoppingLists()
 
-    override suspend fun createShoppingList(shoppingList: ShoppingList) {
-    }
+    override suspend fun createShoppingList(shoppingList: ShoppingList) =
+        shoppingListRepository.createShoppingList(shoppingList)
 
-    override suspend fun createShoppingListByIngredients(ingredients: List<RecipeIngredient>) {
-    }
+    override suspend fun createShoppingListByIngredients(shoppingList: ShoppingList,
+                                                         ingredients: List<RecipeIngredient>) =
+        shoppingListRepository.createShoppingListByIngredients(shoppingList, ingredients)
 
-    override suspend fun editShoppingList(shoppingList: ShoppingList) {
-    }
+    override suspend fun editShoppingList(shoppingList: ShoppingList) =
+        shoppingListRepository.editShoppingList(shoppingList)
 
-    override suspend fun removeShoppingList(id: Int) {
-    }
+    override suspend fun removeShoppingList(shoppingList: ShoppingList) =
+        shoppingListRepository.removeShoppingList(shoppingList)
 
-    override suspend fun getShoppingItems(shoppingListId: Int): List<ShoppingItem> = listOf(
-        ShoppingItem(0, "Картофель", true),
-        ShoppingItem(1, "Яйца"),
-        ShoppingItem(2,"Лук"),
-        ShoppingItem(3,"Молоко"),
-    )
+    override suspend fun getShoppingItems(shoppingListId: Int): List<ShoppingItem> =
+        shoppingListRepository.getShoppingItems(shoppingListId)
 
-    override suspend fun addShoppingItem(shoppingItem: ShoppingItem) {
-    }
+    override suspend fun addShoppingItem(shoppingItem: ShoppingItem) =
+        shoppingListRepository.addShoppingItem(shoppingItem)
 
-    override suspend fun editShoppingItem(shoppingItem: ShoppingItem) {
-    }
+    override suspend fun editShoppingItem(shoppingItem: ShoppingItem) =
+        shoppingListRepository.editShoppingItem(shoppingItem)
 
-    override suspend fun removeShoppingItem(id: Int) {
-    }
-
-    override suspend fun setShoppingItemStatus(isBought: Boolean) {
-    }
+    override suspend fun removeShoppingItem(shoppingItem: ShoppingItem) =
+        shoppingListRepository.removeShoppingItem(shoppingItem)
 }

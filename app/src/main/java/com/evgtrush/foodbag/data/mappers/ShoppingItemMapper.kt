@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.domain.models
+package com.evgtrush.foodbag.data.mappers
 
-data class ShoppingItem(
-    val id: Int = 0,
-    val name: String,
-    val bought: Boolean = false,
-    val shoppingListId: Int = 0,
-)
+import com.evgtrush.foodbag.data.models.db.ShoppingItemEntity
+import com.evgtrush.foodbag.domain.models.ShoppingItem
+
+interface ShoppingItemMapper {
+
+    fun convert(entity: ShoppingItemEntity): ShoppingItem
+    fun reverse(model: ShoppingItem): ShoppingItemEntity
+}

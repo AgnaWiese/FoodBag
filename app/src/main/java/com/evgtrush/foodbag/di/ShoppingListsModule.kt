@@ -15,8 +15,10 @@
  */
 package com.evgtrush.foodbag.di
 
+import com.evgtrush.foodbag.data.repositories.MockShoppingListRepositoryImpl
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractorImpl
+import com.evgtrush.foodbag.domain.repositories.ShoppingListRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -29,5 +31,9 @@ abstract class ShoppingListsModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindRecipeInteractor(impl: ShoppingListInteractorImpl): ShoppingListInteractor
+    abstract fun bindShoppingListRepository(impl: MockShoppingListRepositoryImpl): ShoppingListRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindShoppingListInteractor(impl: ShoppingListInteractorImpl): ShoppingListInteractor
 }

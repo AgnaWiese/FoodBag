@@ -59,7 +59,7 @@ class EditShoppingListBottomSheet(
                 dismiss()
             }
             itemDelete.setOnClickListener {
-                viewModel.removeShoppingList(shoppingList.id)
+                viewModel.removeShoppingList(shoppingList)
                 dismiss()
             }
         }
