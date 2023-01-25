@@ -25,8 +25,11 @@ interface ShoppingItemDao {
     @Query("SELECT * FROM $TABLE_SHOPPING_ITEMS WHERE shopping_list_id = (:id)")
     suspend fun getAllByShoppingListId(id: Int): List<ShoppingItemEntity>
     
-    @Query("SELECT COUNT(uid) FROM $TABLE_SHOPPING_ITEMS WHERE shopping_list_id = (:id) AND bought = (:bought)")
-    suspend fun getItemsCountByShoppingListId(id: Int, bought: Boolean): Int
+    @Query("SELECT COUNT(uid) FROM $TABLE_SHOPPING_ITEMS WHERE shopping_list_id = (:id) AND bought = true")
+    suspend fun getBoughtItemsCountByShoppingListId(id: Int): Int
+
+    @Query("SELECT COUNT(uid) FROM $TABLE_SHOPPING_ITEMS WHERE shopping_list_id = (:id)")
+    suspend fun getItemsCountByShoppingListId(id: Int): Int
 
     @Insert
     suspend fun insertAll(vararg shoppingItems: ShoppingItemEntity)

@@ -39,8 +39,8 @@ class ShoppingListRepositoryImpl @Inject constructor(
         shoppingListDao.getAll().map {
             shoppingListMapper.convert(it).apply {
                 //TODO: refactor
-                progress = (shoppingItemDao.getItemsCountByShoppingListId(it.uid, true) /
-                        shoppingItemDao.getItemsCountByShoppingListId(it.uid, false).toFloat() * 100).toInt()
+                progress = (shoppingItemDao.getBoughtItemsCountByShoppingListId(it.uid) /
+                        shoppingItemDao.getItemsCountByShoppingListId(it.uid).toFloat() * 100).toInt()
             }
         }
     }
