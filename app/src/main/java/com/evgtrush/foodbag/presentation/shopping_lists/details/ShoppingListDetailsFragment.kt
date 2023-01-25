@@ -124,7 +124,8 @@ class ShoppingListDetailsFragment : Fragment(R.layout.fragment_shopping_list_det
             .setPositiveButton(R.string.item_create) { dialog, _ ->
                 viewModel.addShoppingItem(
                     ShoppingItem(
-                        name = view.findViewById<EditText>(R.id.textField).text.toString()
+                        name = view.findViewById<EditText>(R.id.textField).text.toString(),
+                        shoppingListId = args.shoppingList?.id ?: 0 //TODO: dirty
                     )
                 )
                 dialog.dismiss()

@@ -39,10 +39,10 @@ class ShoppingListDetailsViewModel @Inject constructor(
     fun getShoppingListItem(id: Int) {
         viewModelScope.launch {
             try {
-                val shoppingLists = interactor.getShoppingItems(id)
+                val shoppingItems = interactor.getShoppingItems(id)
                 _uiState.update {
                     it.copy(
-                        shoppingItems = shoppingLists
+                        shoppingItems = shoppingItems
                     )
                 }
             } catch (e: Exception) {
@@ -56,10 +56,17 @@ class ShoppingListDetailsViewModel @Inject constructor(
         }
     }
 
-    fun addShoppingItem(shoppingLItem: ShoppingItem) {
+    fun addShoppingItem(shoppingItem: ShoppingItem) {
         viewModelScope.launch {
             try {
-                interactor.addShoppingItem(shoppingLItem)
+                interactor.addShoppingItem(shoppingItem)
+                // TODO: Optimize
+                val shoppingItems = interactor.getShoppingItems(shoppingItem.shoppingListId)
+                _uiState.update {
+                    it.copy(
+                        shoppingItems = shoppingItems
+                    )
+                }
             } catch (e: Exception) {
                 Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
                 _uiState.update {
@@ -71,10 +78,39 @@ class ShoppingListDetailsViewModel @Inject constructor(
         }
     }
 
-    fun removeShoppingItem(shoppingLItem: ShoppingItem) {
+    fun removeShoppingItem(shoppingItem: ShoppingItem) {
         viewModelScope.launch {
             try {
-                interactor.removeShoppingItem(shoppingLItem)
+                interactor.removeShoppingItem(shoppingItem)
+                // TODO: Optimize
+                val shoppingItems = interactor.getShoppingItems(shoppingItem.shoppingListId)
+                _uiState.update {
+                    it.copy(
+                        shoppingItems = shoppingItems
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("ShoppingListDetailsViewModel", e.message ?: "Something went wrong...")
+                _uiState.update {
+                    it.copy(
+                        isError = true
+                    )
+                }
+            }
+        }
+    }
+
+    fun editShoppingItem(shoppingItem: ShoppingItem) {
+        viewModelScope.launch {
+            try {
+                interactor.editShoppingItem(shoppingItem)
+                // TODO: Optimize
+                val shoppingItems = interactor.getShoppingItems(shoppingItem.shoppingListId)
+                _uiState.update {
+                    it.copy(
+                        shoppingItems = shoppingItems
+                    )
+                }
             } catch (e: Exception) {
                 Log.e("ShoppingListDetailsViewModel", e.message ?: "Something went wrong...")
                 _uiState.update {

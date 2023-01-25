@@ -49,6 +49,12 @@ internal class ShoppingListItemsAdapter(
                 title.text = shoppingItem.name
                 title.isChecked = shoppingItem.bought
 
+                title.setOnClickListener {
+                    viewModel.editShoppingItem(shoppingItem.copy(
+                        bought = title.isChecked
+                    ))
+                }
+
                 more.setOnClickListener {
                     val modalBottomSheet = EditShoppingItemBottomSheet(shoppingItem, viewModel)
                     modalBottomSheet.show(fragmentManager, EditShoppingItemBottomSheet.TAG)

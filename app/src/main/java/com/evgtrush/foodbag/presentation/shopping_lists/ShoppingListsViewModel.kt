@@ -60,6 +60,13 @@ class ShoppingListsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 interactor.createShoppingList(shoppingList)
+                //TODO : оптимизировать, чтобы не грузить весь список заново
+                val shoppingLists = interactor.getShoppingLists()
+                _uiState.update {
+                    it.copy(
+                        shoppingLists = shoppingLists
+                    )
+                }
             } catch (e: Exception) {
                 Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
                 _uiState.update {
@@ -75,6 +82,35 @@ class ShoppingListsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 interactor.removeShoppingList(shoppingList)
+                //TODO : оптимизировать, чтобы не грузить весь список заново
+                val shoppingLists = interactor.getShoppingLists()
+                _uiState.update {
+                    it.copy(
+                        shoppingLists = shoppingLists
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
+                _uiState.update {
+                    it.copy(
+                        isError = true
+                    )
+                }
+            }
+        }
+    }
+
+    fun renameShoppingList(shoppingList: ShoppingList) {
+        viewModelScope.launch {
+            try {
+                interactor.editShoppingList(shoppingList)
+                //TODO : оптимизировать, чтобы не грузить весь список заново
+                val shoppingLists = interactor.getShoppingLists()
+                _uiState.update {
+                    it.copy(
+                        shoppingLists = shoppingLists
+                    )
+                }
             } catch (e: Exception) {
                 Log.e("ShoppingListsViewModel", e.message ?: "Something went wrong...")
                 _uiState.update {

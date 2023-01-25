@@ -17,7 +17,6 @@ package com.evgtrush.foodbag.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.evgtrush.foodbag.data.datasources.db.AppDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -47,7 +46,7 @@ class AppModule {
     @Singleton
     fun provideDataBase(
         @ApplicationContext applicationContext: Context
-    ): RoomDatabase = Room.databaseBuilder(
+    ): AppDatabase = Room.databaseBuilder(
         applicationContext,
         AppDatabase::class.java,
         AppDatabase.DB_NAME

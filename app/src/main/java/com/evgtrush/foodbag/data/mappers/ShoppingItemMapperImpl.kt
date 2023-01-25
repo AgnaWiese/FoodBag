@@ -25,7 +25,8 @@ class ShoppingItemMapperImpl @Inject constructor(): ShoppingItemMapper {
         ShoppingItem(
             id = entity.uid,
             name = entity.name,
-            bought = entity.bought
+            bought = entity.bought,
+            shoppingListId = entity.shoppingListId
         )
 
     override fun reverse(model: ShoppingItem): ShoppingItemEntity =

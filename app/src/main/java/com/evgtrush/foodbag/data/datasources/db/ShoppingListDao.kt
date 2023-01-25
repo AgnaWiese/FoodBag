@@ -26,7 +26,7 @@ interface ShoppingListDao {
     suspend fun getAll(): List<ShoppingListEntity>
 
     @Insert
-    suspend fun insertAll(vararg shoppingLists: ShoppingListEntity)
+    suspend fun insertAll(vararg shoppingLists: ShoppingListEntity): LongArray
 
     @Update
     suspend fun update(shoppingList: ShoppingListEntity)

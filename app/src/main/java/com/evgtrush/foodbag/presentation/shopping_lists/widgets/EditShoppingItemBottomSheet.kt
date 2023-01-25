@@ -67,7 +67,7 @@ class EditShoppingItemBottomSheet(
 
     private fun showRenameDialog() {
         val view = layoutInflater.inflate(R.layout.view_edit_text, null, false)
-        view.findViewById<EditText>(R.id.textField).apply {
+        val editText = view.findViewById<EditText>(R.id.textField).apply {
             setText(shoppingItem.name)
             setSelection(length())
         }
@@ -76,6 +76,9 @@ class EditShoppingItemBottomSheet(
             .setTitle(R.string.title_rename_item)
             .setView(view)
             .setPositiveButton(R.string.item_rename) { dialog, _ ->
+                viewModel.editShoppingItem(shoppingItem.copy(
+                    name = editText.text.toString()
+                ))
                 dialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->

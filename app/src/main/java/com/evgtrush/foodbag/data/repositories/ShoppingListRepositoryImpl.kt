@@ -41,14 +41,26 @@ class ShoppingListRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun createShoppingList(shoppingList: ShoppingList) = withContext(dispatcher) {
-        shoppingListDao.insertAll(shoppingListMapper.reverse(shoppingList))
+    override suspend fun createShoppingList(shoppingList: ShoppingList) {
+        withContext(dispatcher) {
+            shoppingListDao.insertAll(shoppingListMapper.reverse(shoppingList))
+        }
     }
 
     override suspend fun createShoppingListByIngredients(
         shoppingList: ShoppingList,
         ingredients: List<RecipeIngredient>
     ) = withContext(dispatcher) {
+        val ids = shoppingListDao.insertAll(shoppingListMapper.reverse(shoppingList))
+        //TODO: optimize
+        for (ingredient in ingredients) {
+            shoppingItemDao.insertAll(shoppingItemMapper.reverse(
+                ShoppingItem(
+                    name = ingredient.name,
+                    shoppingListId = ids[0].toInt()
+                )
+            ))
+        }
     }
 
     override suspend fun editShoppingList(shoppingList: ShoppingList) = withContext(dispatcher) {

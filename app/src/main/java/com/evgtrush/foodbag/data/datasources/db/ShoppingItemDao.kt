@@ -22,7 +22,7 @@ import com.evgtrush.foodbag.data.models.db.ShoppingItemEntity
 @Dao
 interface ShoppingItemDao {
 
-    @Query("SELECT * FROM $TABLE_SHOPPING_ITEMS WHERE uid = (:id)")
+    @Query("SELECT * FROM $TABLE_SHOPPING_ITEMS WHERE shopping_list_id = (:id)")
     suspend fun getAllByShoppingListId(id: Int): List<ShoppingItemEntity>
 
     @Insert

@@ -15,16 +15,21 @@
  */
 package com.evgtrush.foodbag.di
 
+import com.evgtrush.foodbag.data.datasources.db.AppDatabase
+import com.evgtrush.foodbag.data.datasources.db.ShoppingItemDao
+import com.evgtrush.foodbag.data.datasources.db.ShoppingListDao
 import com.evgtrush.foodbag.data.mappers.ShoppingItemMapper
 import com.evgtrush.foodbag.data.mappers.ShoppingItemMapperImpl
 import com.evgtrush.foodbag.data.mappers.ShoppingListMapper
 import com.evgtrush.foodbag.data.mappers.ShoppingListMapperImpl
 import com.evgtrush.foodbag.data.repositories.MockShoppingListRepositoryImpl
+import com.evgtrush.foodbag.data.repositories.ShoppingListRepositoryImpl
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractorImpl
 import com.evgtrush.foodbag.domain.repositories.ShoppingListRepository
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -32,6 +37,16 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class ShoppingListsModule {
+
+    companion object {
+        @Provides
+        @ViewModelScoped
+        fun provideShoppingListDao(appDatabase: AppDatabase): ShoppingListDao = appDatabase.shoppingList()
+
+        @Provides
+        @ViewModelScoped
+        fun provideShoppingItemDao(appDatabase: AppDatabase): ShoppingItemDao = appDatabase.shoppingItem()
+    }
 
     @Binds
     @ViewModelScoped
@@ -41,13 +56,13 @@ abstract class ShoppingListsModule {
     @ViewModelScoped
     abstract fun bindShoppingListMapper(impl: ShoppingListMapperImpl): ShoppingListMapper
 
-//    @Binds
-//    @ViewModelScoped
-//    abstract fun bindShoppingListRepository(impl: ShoppingListRepositoryImpl): ShoppingListRepository
-
     @Binds
     @ViewModelScoped
-    abstract fun bindShoppingListRepository(impl: MockShoppingListRepositoryImpl): ShoppingListRepository
+    abstract fun bindShoppingListRepository(impl: ShoppingListRepositoryImpl): ShoppingListRepository
+
+//    @Binds
+//    @ViewModelScoped
+//    abstract fun bindShoppingListRepository(impl: MockShoppingListRepositoryImpl): ShoppingListRepository
 
     @Binds
     @ViewModelScoped
