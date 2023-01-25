@@ -93,6 +93,12 @@ class ShoppingListsFragment : Fragment() {
                     }
 
                     binding.progress.visibility = View.GONE
+
+                    binding.hint.visibility = if (it.shoppingLists.isEmpty()) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
                 }
             }
         }

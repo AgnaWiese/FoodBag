@@ -35,4 +35,6 @@
     <string name="title_ingredients">Ingredients</string>
     <string name="add_to_shopping_list">Add to shopping list</string>
     <string name="сooking_steps">Сooking steps</string>
+
+    <string name="empty_shoppings_lists_hint">Add your first shopping list :)</string>
 </resources>
