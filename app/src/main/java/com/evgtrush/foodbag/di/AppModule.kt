@@ -15,11 +15,16 @@
  */
 package com.evgtrush.foodbag.di
 
+import android.content.Context
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.evgtrush.foodbag.data.datasources.db.AppDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
@@ -37,4 +42,14 @@ class AppModule {
     fun provideGson(): Gson = GsonBuilder()
         .setLenient()
         .create()
+
+    @Provides
+    @Singleton
+    fun provideDataBase(
+        @ApplicationContext applicationContext: Context
+    ): RoomDatabase = Room.databaseBuilder(
+        applicationContext,
+        AppDatabase::class.java,
+        AppDatabase.DB_NAME
+    ).build()
 }

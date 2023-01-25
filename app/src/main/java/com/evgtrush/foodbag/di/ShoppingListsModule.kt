@@ -15,6 +15,10 @@
  */
 package com.evgtrush.foodbag.di
 
+import com.evgtrush.foodbag.data.mappers.ShoppingItemMapper
+import com.evgtrush.foodbag.data.mappers.ShoppingItemMapperImpl
+import com.evgtrush.foodbag.data.mappers.ShoppingListMapper
+import com.evgtrush.foodbag.data.mappers.ShoppingListMapperImpl
 import com.evgtrush.foodbag.data.repositories.MockShoppingListRepositoryImpl
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractorImpl
@@ -28,6 +32,18 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class ShoppingListsModule {
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindShoppingItemMapper(impl: ShoppingItemMapperImpl): ShoppingItemMapper
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindShoppingListMapper(impl: ShoppingListMapperImpl): ShoppingListMapper
+
+//    @Binds
+//    @ViewModelScoped
+//    abstract fun bindShoppingListRepository(impl: ShoppingListRepositoryImpl): ShoppingListRepository
 
     @Binds
     @ViewModelScoped

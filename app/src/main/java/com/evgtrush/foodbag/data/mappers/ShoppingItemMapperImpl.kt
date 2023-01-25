@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.evgtrush.foodbag.data.datasources.db
+package com.evgtrush.foodbag.data.mappers
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
 import com.evgtrush.foodbag.data.models.db.ShoppingItemEntity
-import com.evgtrush.foodbag.data.models.db.ShoppingListEntity
+import com.evgtrush.foodbag.domain.models.ShoppingItem
+import javax.inject.Inject
 
-@Database(entities = [
-    ShoppingListEntity::class,
-    ShoppingItemEntity::class
- ], version = 1)
-abstract class AppDatabase : RoomDatabase() {
+class ShoppingItemMapperImpl @Inject constructor(): ShoppingItemMapper {
 
-    companion object {
-        const val DB_NAME = "foodbag_db"
-        const val TABLE_SHOPPING_ITEMS = "shopping_items"
-        const val TABLE_SHOPPING_LISTS = "shopping_lists"
-    }
+    override fun convert(entity: ShoppingItemEntity): ShoppingItem =
+        ShoppingItem(
+            id = entity.uid,
+            name = entity.name,
+            bought = entity.bought
+        )
 
-    abstract fun shoppingList(): ShoppingListDao
-    abstract fun shoppingItem(): ShoppingItemDao
+    override fun reverse(model: ShoppingItem): ShoppingItemEntity =
+        ShoppingItemEntity(
+            uid = model.id,
+            name = model.name,
+            bought = model.bought,
+            shoppingListId = model.shoppingListId
+        )
 }
