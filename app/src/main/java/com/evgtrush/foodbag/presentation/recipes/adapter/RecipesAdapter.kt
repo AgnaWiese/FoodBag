@@ -20,7 +20,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.evgtrush.foodbag.R
 import com.evgtrush.foodbag.databinding.ListItemRecipeBinding
 import com.evgtrush.foodbag.domain.models.Recipe
 import com.evgtrush.foodbag.presentation.recipes.RecipesFragmentDirections

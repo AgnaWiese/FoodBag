@@ -22,7 +22,6 @@ import com.evgtrush.foodbag.data.mappers.ShoppingItemMapper
 import com.evgtrush.foodbag.data.mappers.ShoppingItemMapperImpl
 import com.evgtrush.foodbag.data.mappers.ShoppingListMapper
 import com.evgtrush.foodbag.data.mappers.ShoppingListMapperImpl
-import com.evgtrush.foodbag.data.repositories.MockShoppingListRepositoryImpl
 import com.evgtrush.foodbag.data.repositories.ShoppingListRepositoryImpl
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractor
 import com.evgtrush.foodbag.domain.interactors.ShoppingListInteractorImpl

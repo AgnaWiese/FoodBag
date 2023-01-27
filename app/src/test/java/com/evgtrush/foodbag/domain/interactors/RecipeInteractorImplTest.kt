@@ -26,9 +26,9 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
-import org.mockito.kotlin.whenever
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.times
+import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
